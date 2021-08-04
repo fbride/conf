@@ -6,14 +6,16 @@ promptinit
 autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
-HISTFILESIZE=1000000000
-HISTSIZE=1000000000
-HISTFILE=~/.zsh_history
-setopt HIST_REDUCE_BLANKS  # remove unnecessary blanks
-setopt INC_APPEND_HISTORY_TIME  # append command to history file immediately after execution
-setopt EXTENDED_HISTORY  # record command start time
 
+HISTFILE=/specify/a/fixed/and/different/location/.history
+HISTSIZE=500000
+SAVEHIST=500000
+setopt appendhistory
+setopt INC_APPEND_HISTORY
+setopt SHARE_HISTORY
+setopt EXTENDED_HISTORY
 setopt HIST_FIND_NO_DUPS
+HISTFILE=~/.zsh_history
 
 [[ -n "${key[Up]}"   ]] && bindkey -- "${key[Up]}"   up-line-or-beginning-search
 [[ -n "${key[Down]}" ]] && bindkey -- "${key[Down]}" down-line-or-beginning-search
@@ -80,3 +82,5 @@ key[Control-Right]="${terminfo[kRIT5]}"
 SPACESHIP_EXIT_CODE_SHOW=true
 
 prompt spaceship
+
+source /home/florent/.config/broot/launcher/bash/br
